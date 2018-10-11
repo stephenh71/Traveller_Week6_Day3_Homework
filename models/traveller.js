@@ -29,21 +29,19 @@ Traveller.prototype.calculateTotalDistanceTravelled = function () {
   return sum
 };
 
-//Found this which demonstrates 2 ways of obtaining unique's from an array which both work -  https://medium.com/front-end-hacking/getting-unique-values-in-javascript-arrays-17063080f836
-
-// Below re-uses same coding from the .getModesOfTransport method above.  Clearly not DRY and better to call function rather than repeat but for some reason was having difficulty calling the function on "traveller" - got "traveller is not defined error" - something to ask tomorrow.
-
+// Found this which demonstrates 2 ways of obtaining unique's from an array which both work -  https://medium.com/front-end-hacking/getting-unique-values-in-javascript-arrays-17063080f836
+//
 // Method 1:
-  // Traveller.prototype.getUniqueModesOfTransport = function () {
-  //     return [...new Set(this.journeys.map(journey => journey.transport))];
-  //   };
+  Traveller.prototype.getUniqueModesOfTransport = function () {
+      return [...new Set(this.getModesOfTransport())];
+    };
 
 // Method 2:
-  Traveller.prototype.getUniqueModesOfTransport = function () {
-    const unique = (value, index, self) => {
-        return self.indexOf(value) === index;
-    }
-    return (this.journeys.map(journey => journey.transport).filter(unique));
-  };
+//   Traveller.prototype.getUniqueModesOfTransport = function () {
+//     const unique = (value, index, self) => {
+//         return self.indexOf(value) === index;
+//     }
+//     return (this.getModesOfTransport().filter(unique));
+//   };
 
 module.exports = Traveller;
